@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: cbar-server
+    env: node
+    rootDir: CBarServer
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromSecret: DATABASE_URL
+      - key: PGSSLMODE
+        value: no-verify
+      - key: NODE_TLS_REJECT_UNAUTHORIZED
+        value: "0"
+      - key: JWT_SECRET
+        fromSecret: JWT_SECRET
+
